@@ -16,7 +16,7 @@ This code requires GPU and the following libraries needs to be installed.
 
 ## Individual Contributions
 
-vs2626 - Venkata Sai Sriharsha Sammeta
+Venkata Sai Sriharsha Sammeta - vs2626
 - CoreModels/infogan.py
 - CoreModels/coremodel.py
 - CoreModels/repository.py
@@ -27,13 +27,13 @@ vs2626 - Venkata Sai Sriharsha Sammeta
 - train_gan.py
 - train_infogan.py
 
-se2444 - Smitha Edakalavan
+Smitha Edakalavan - se2444
 - CoreModels/wgan.py
 - train_wgan.py
 - config.yaml
 - logger.py
 
-ys3055 - Yuval Schaal
+Yuval Schaal - ys3055
 - CoreModels/dcgan.py
 - train_dcgan.py
 - scripts/script_hd5.py
