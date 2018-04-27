@@ -1,4 +1,4 @@
-# Sentence to Pixel Representations using GANs
+# Sentence to Pixels Representations using GANs
 
 Project by:
 1. Venkata Sai Sriharsha Sammeta (vs2626)
