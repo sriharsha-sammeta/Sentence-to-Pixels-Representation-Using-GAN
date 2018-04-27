@@ -1,0 +1,22 @@
+#configuration
+dataset: 'flowers'
+gan_type: 'dcgan'
+lr: 0.0002
+cls: False
+save_directory_path: ''
+inference: False
+path_to_pre_trained_discriminator: ''
+path_to_pre_trained_generator: ''
+# if pre-processing has to be done, set these 
+images_path: ''
+embedding_path: ''
+text_path: ''
+datasetDir: ''
+
+split: 0
+epochs: 200
+num_workers: 8
+batch_size: 64
+
+# change this to birds / flowers.hdf5 / coco.hdf5
+dataset_path: 'flowers.hdf5'
