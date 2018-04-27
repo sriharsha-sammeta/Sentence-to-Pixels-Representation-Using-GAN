@@ -63,9 +63,10 @@ class Tools(object):
 
 class VisdomPlotter(object):
 
-    """Plots to Visdom"""
+    """Plots to Visdom Server"""
 
     def __init__(self, env_name='gan'):
+        """Initilized visdom, environment and plots dictionary"""
         self.viz = Visdom()
         self.env = env_name
         self.plots = {}

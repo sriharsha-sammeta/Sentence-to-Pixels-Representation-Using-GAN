@@ -63,6 +63,7 @@ class Model(object):
                 print(t)
 
 if __name__=='__main__':
+    """This is main function & entrypoint"""
     config = None 
     with open('config.yaml', 'r') as myfile:
         config = yaml.load(myfile)
