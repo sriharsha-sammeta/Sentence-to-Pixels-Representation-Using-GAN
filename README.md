@@ -84,9 +84,9 @@ Then run,
 python main.py
 ```
 ## Reference Links
-http://www.robots.ox.ac.uk/%7Evgg/data/flowers/102/  <br>
-http://www.vision.caltech.edu/visipedia/CUB-200.html <br>
-http://cocodataset.org/#home <br>
-https://github.com/paarthneekhara/text-to-image <br>
-https://github.com/zsdonghao/text-to-image <br>
+- http://www.robots.ox.ac.uk/%7Evgg/data/flowers/102/ 
+- http://www.vision.caltech.edu/visipedia/CUB-200.html
+- http://cocodataset.org/#home 
+- https://github.com/paarthneekhara/text-to-image 
+- https://github.com/zsdonghao/text-to-image 
 
