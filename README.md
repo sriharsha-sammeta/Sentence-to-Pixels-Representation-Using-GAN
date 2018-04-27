@@ -20,11 +20,11 @@ Venkata Sai Sriharsha Sammeta - vs2626
 - CoreModels/infogan.py
 - CoreModels/coremodel.py
 - CoreModels/repository.py
-- RNNModels/utility.py
-- RNNModels/attentive_weights.py
-- RNNModels/data.py
-- RNNModels/model.py
-- RNNModels/train.py
+- RNNModel/utility.py
+- RNNModel/attentive_weights.py
+- RNNModel/data.py
+- RNNModel/model.py
+- RNNModel/train.py
 - CustomDatasetLoader.py
 - helper.py
 - main.py
@@ -48,11 +48,11 @@ Yuval Schaal - ys3055
 - {root directory} - Has Train_{gan_type} files like train_dcgan.py, train_wgan.py and train_infogan.py that are used to train / test the corresponding gan models
 - CoreModels directory - Has all the models (DCGAN, WGAN and INFOGAN) in it
 - RNNModel directory- Has the entire model and training process for the Attention Based RNN Embedding that we used 
-- RNNModels/utility.py - has code for tools and helper methods used inside RNN model
-- RNNModels/attentive_weights.py - code for evaluating the attention model
-- RNNModels/data.py - has the code to load and modify corpus 
-- RNNModels/model.py - Has the code which defines the architecture of the model
-- RNNModels/train.py - Has the code required to train the RNN model
+- RNNModel/utility.py - has code for tools and helper methods used inside RNN model
+- RNNModel/attentive_weights.py - code for evaluating the attention model
+- RNNModel/data.py - has the code to load and modify corpus 
+- RNNModel/model.py - Has the code which defines the architecture of the model
+- RNNModel/train.py - Has the code required to train the RNN model
 - scripts directory - Has the script required to convert the given data into hd5 format as required for pytorch
 - CustomDataSetLoader.py - It is used for loading datasamples as required by the code via pytorch
 - logger.py - has code for logging purpose
