@@ -8,8 +8,9 @@ from visdom import Visdom
 import torchvision
 from PIL import ImageDraw, Image, ImageFont
 
+#vs2626
 class Tools(object):
-    
+    """Used for certain tools that are re-used across"""
     @staticmethod
     def randomly_initialize_weights(m):
         classname = m.__class__.__name__

@@ -11,6 +11,7 @@ from PIL import Image
 from train_gan import Train_GAN
 import yaml
 
+#vs2626
 
 class Train_INFOGAN(Train_GAN):
     def __init__(self, config):

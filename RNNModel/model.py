@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch
 from torch.autograd import Variable
 
+#vs2626
 class SelfAttentive( nn.Module ):
 
     def __init__( self, ntoken, ninp, nhid, nlayers, da, r, mlp_nhid, nclass, emb_matrix, cuda, penal_type ):

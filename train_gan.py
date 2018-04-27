@@ -11,7 +11,7 @@ from logger import Logger
 from PIL import Image
 import yaml
 
-
+#vs2626
 class Train_GAN(object):
     def __init__(self, config):
         # setting configuration values 

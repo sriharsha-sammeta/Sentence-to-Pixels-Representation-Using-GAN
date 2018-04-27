@@ -6,6 +6,8 @@ from data import *
 from model import *
 from Utility import *
 
+#vs2626
+
 def evaluate( data_source, labels, data_len ):
     total_loss = 0
     

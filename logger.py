@@ -1,7 +1,10 @@
 import numpy as np 
 from helper import VisdomPlotter
 
+#se2444
+
 class Logger(object):
+    """Used for logging the models outputs"""
     def __init__(self, vis_screen):
         self.plotter = VisdomPlotter(env_name=vis_screen)
         self.hist_D = []

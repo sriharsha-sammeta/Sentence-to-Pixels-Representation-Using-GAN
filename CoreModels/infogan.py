@@ -5,6 +5,7 @@ import numpy as np
 from CoreModels.coremodel import Concat_embed
 import pdb
 
+#vs2626
 class generator(nn.Module):
 	def __init__(self):
 		super(generator, self).__init__()

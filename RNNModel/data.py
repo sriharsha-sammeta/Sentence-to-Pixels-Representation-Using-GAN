@@ -3,6 +3,7 @@ import torch
 import csv
 from nltk.tokenize import word_tokenize, sent_tokenize
 
+#vs2626
 # Data Class
 class Dictionary( object ):
     def __init__(self):

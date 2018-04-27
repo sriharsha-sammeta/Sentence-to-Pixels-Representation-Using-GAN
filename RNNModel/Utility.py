@@ -1,6 +1,8 @@
 import torch
 from torch.autograd import Variable
 
+#vs2626
+
 # Batchify the whole dataset
 def select_data( data, bsz ):
     try:
