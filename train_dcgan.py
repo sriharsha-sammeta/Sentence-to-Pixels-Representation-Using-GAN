@@ -11,7 +11,7 @@ from PIL import Image
 from train_gan import Train_GAN
 import yaml
 
-
+#ys3055
 class Train_DCGAN(Train_GAN):
     def __init__(self, config):
         super().__init__(config)
