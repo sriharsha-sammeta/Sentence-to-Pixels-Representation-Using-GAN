@@ -25,6 +25,32 @@ logger.py - has code for logging purpose
 helper.py - has code for some tools & visualization
 
 
+## Individual Contributions
+
+vs2626 - Venkata Sai Sriharsha Sammeta
+- CoreModels/infogan.py
+- CoreModels/coremodel.py
+- CoreModels/repository.py
+- RNNModels/*
+- CustomDatasetLoader.py
+- helper.py
+- main.py
+- train_gan.py
+- train_infogan.py
+
+se2444 - Smitha Edakalavan
+- CoreModels/wgan.py
+- train_wgan.py
+- config.yaml
+- logger.py
+
+ys3055 - Yuval Schaal
+- CoreModels/dcgan.py
+- train_dcgan.py
+- scripts/script_hd5.py
+
+
+
 ## Quick Run Instructions
 If you want to quickly test the implementation:
 - Downaload the href='https://drive.google.com/file/d/1EgnaTrlHGaqK5CCgHKLclZMT_AMSTyh8/view'>Flowers</a>.hd5 file
@@ -59,4 +85,3 @@ Then run,
 ``` shell
 python main.py
 ```
-
