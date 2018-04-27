@@ -51,7 +51,7 @@ Yuval Schaal - ys3055
 
 ## Quick Run Instructions
 If you want to quickly test the implementation:
-- Downaload the href='https://drive.google.com/file/d/1EgnaTrlHGaqK5CCgHKLclZMT_AMSTyh8/view'>Flowers</a>.hd5 file
+- Downaload this [file](https://drive.google.com/open?id=1EgnaTrlHGaqK5CCgHKLclZMT_AMSTyh8)
 - Put it in root directory
 - run the command ``` python main.py```
 
