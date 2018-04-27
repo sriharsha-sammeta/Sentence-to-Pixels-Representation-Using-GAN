@@ -51,7 +51,7 @@ Yuval Schaal - ys3055
 
 ## Quick Run Instructions
 If you want to quickly test the implementation:
-- Downaload this [file](https://drive.google.com/open?id=1EgnaTrlHGaqK5CCgHKLclZMT_AMSTyh8)
+- Downaload this [file](https://drive.google.com/open?id=1EgnaTrlHGaqK5CCgHKLclZMT_AMSTyh8) which has flowers dataset in the format need for pytorch. 
 - Put it in root directory
 - run the command ``` python main.py```
 
