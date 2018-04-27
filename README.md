@@ -20,7 +20,11 @@ Venkata Sai Sriharsha Sammeta - vs2626
 - CoreModels/infogan.py
 - CoreModels/coremodel.py
 - CoreModels/repository.py
-- RNNModels/*
+- RNNModels/utility.py
+- RNNModels/attentive_weights.py
+- RNNModels/data.py
+- RNNModels/model.py
+- RNNModels/train.py
 - CustomDatasetLoader.py
 - helper.py
 - main.py
