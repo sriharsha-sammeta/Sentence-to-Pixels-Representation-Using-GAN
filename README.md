@@ -14,17 +14,6 @@ This code requires GPU and the following libraries needs to be installed.
 - h5py
 - PIL
 
-## Code Organization
-main.py - It is the starting point of the code. It will read config.yaml and accordingly call the appropriate training/testing methods on corresponding gans
-{root directory} - Has Train_{gan_type} files that are used to train / test the corresponding gan models
-CoreModels directory - Has all the models (DCGAN, WGAN and INFOGAN) in it
-scripts directory - Has the script required to convert the given data into hd5 format as required for pytorch
-RNNModel directory- Has the entire model and training process for the Attention Based RNN Embedding that we used 
-CustomDataSetLoader.py - It is used for loading datasamples as required by the code via pytorch
-logger.py - has code for logging purpose
-helper.py - has code for some tools & visualization
-
-
 ## Individual Contributions
 
 vs2626 - Venkata Sai Sriharsha Sammeta
@@ -50,6 +39,15 @@ ys3055 - Yuval Schaal
 - scripts/script_hd5.py
 
 
+## Code Organization
+- main.py - It is the starting point of the code. It will read config.yaml and accordingly call the appropriate training/testing methods on corresponding gans
+- {root directory} - Has Train_{gan_type} files that are used to train / test the corresponding gan models
+- CoreModels directory - Has all the models (DCGAN, WGAN and INFOGAN) in it
+- scripts directory - Has the script required to convert the given data into hd5 format as required for pytorch
+- RNNModel directory- Has the entire model and training process for the Attention Based RNN Embedding that we used 
+- CustomDataSetLoader.py - It is used for loading datasamples as required by the code via pytorch
+- logger.py - has code for logging purpose
+- helper.py - has code for some tools & visualization
 
 ## Quick Run Instructions
 If you want to quickly test the implementation:
