@@ -6,22 +6,27 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 #vs2626
 # Data Class
 class Dictionary( object ):
+    """Dictionary of key and values to map between words and counts"""
     def __init__(self):
         self.word2idx = {}
         self.idx2word = []
 
     def add_word(self, word):
+        """Add a word to dict"""
         if word not in self.word2idx:
             self.idx2word.append( word )
             self.word2idx[ word ] = len(self.idx2word) - 1
         return self.word2idx[ word ]
 
     def __len__(self):
+        """get length of dictionary keys"""
         return len( self.idx2word )
 
 
 class Corpus( object ):
+    """Representation for corpus"""
     def __init__(self, path):
+        """Initialize corpus"""
         self.dictionary = Dictionary()
         
         # Load all train, valid and test data

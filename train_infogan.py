@@ -14,10 +14,12 @@ import yaml
 #vs2626
 
 class Train_INFOGAN(Train_GAN):
+    """ INFOGAN training classs """ 
     def __init__(self, config):
         super().__init__(config)
 
-    def train(self):     
+    def train(self):    
+        """ Trains the model InfoGAN """ 
         one = torch.FloatTensor([1])
         mone = one * -1
 

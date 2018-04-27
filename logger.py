@@ -13,16 +13,19 @@ class Logger(object):
         self.hist_DGx = []
 
     def draw(self, CorrectImages, Unrealimages):
+        """ draw images: usually correct vs incorrect images in visdom server"""
         self.plotter.draw('generated images', Unrealimages.data.cpu().numpy()[:64] * 128 + 128)
         self.plotter.draw('real images', CorrectImages.data.cpu().numpy()[:64] * 128 + 128)
 
     def plotter_epoch(self, epoch):
+        """Plots loss vs epochs"""
         self.plotter.plot('Discriminator', 'train', epoch, np.array(self.hist_D).mean())
         self.plotter.plot('Generator', 'train', epoch, np.array(self.hist_G).mean())
         self.hist_D = []
         self.hist_G = []
 
     def plotter_epoch_w(self, epoch):
+        """Plots loss vs epochs and also D(X) and D(G(X)) """
         self.plotter.plot('Discriminator', 'train', epoch, np.array(self.hist_D).mean())
         self.plotter.plot('Generator', 'train', epoch, np.array(self.hist_G).mean())
         self.plotter.plot('D(X)', 'train', epoch, np.array(self.hist_Dx).mean())
@@ -33,6 +36,7 @@ class Logger(object):
         self.hist_DGx = []
 
     def logger_iter_gan(self, epoch, d_loss, g_loss, real_score, Unrealscore):
+        """logger over iterations for dcgan which plots discrimintator loss, generator loss and D(X) and D(G(X))"""
         print("Epoch: %d, d_loss= %f, g_loss= %f, D(X)= %f, D(G(X))= %f" % (
             epoch, d_loss.data.cpu().mean(), g_loss.data.cpu().mean(), real_score.data.cpu().mean(),
             Unrealscore.data.cpu().mean()))
@@ -42,12 +46,14 @@ class Logger(object):
         self.hist_DGx.append(Unrealscore.data.cpu().mean())
 
     def logger_iter_wgan(self, epoch, gen_iteration, d_loss, g_loss, real_loss, Unrealloss):
+        """logger over iterations for Wgan which plots discrimintator loss, generator loss and D(X) and D(G(X))"""
         print("Epoch: %d, Gen_iteration: %d, d_loss= %f, g_loss= %f, real_loss= %f, Unrealloss = %f" %
               (epoch, gen_iteration, d_loss.data.cpu().mean(), g_loss.data.cpu().mean(), real_loss, Unrealloss))
         self.hist_D.append(d_loss.data.cpu().mean())
         self.hist_G.append(g_loss.data.cpu().mean())
 
     def logger_iter_infogan(self, epoch, d_loss, g_loss, real_score, Unrealscore):
+        """logger over iterations for infogan which plots discrimintator loss, generator loss and D(X) and D(G(X))"""
         print("Epoch: %d, d_loss= %f, g_loss= %f, D(X)= %f, D(G(X))= %f" % (
             epoch, d_loss.data.cpu().mean(), g_loss.data.cpu().mean(), real_score.data.cpu().mean(),
             Unrealscore.data.cpu().mean()))

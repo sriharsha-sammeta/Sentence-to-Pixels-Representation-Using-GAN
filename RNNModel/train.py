@@ -96,6 +96,7 @@ entropy_loss = nn.CrossEntropyLoss()
 
 # Define the training function
 def train( lr, epoch ):
+    """Trainig the model by using architecture in model.py"""
     # word_update: whether glove vectors are updated
 
     total_loss = 0
@@ -146,6 +147,7 @@ def train( lr, epoch ):
 
 # Define evaluation function
 def evaluate( data_source, labels, data_len ):
+    """Evaluate model performance"""
     total_loss = 0
 
     acc = []

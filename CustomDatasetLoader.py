@@ -10,9 +10,11 @@ from torch.autograd import Variable
 import pdb
 import torch.nn.functional as F
 
+#vs2626
 class CustomDataset(Dataset):
-
+    """A custom dataset loader to load data from the input into pytorch"""
     def __init__(self, pathToFile, split=0):
+        """initialization"""
         self.pathToFile = pathToFile
         self.split = 'train' if split == 0 else 'valid' if split == 1 else 'test'
         self.h5py2int = lambda x: int(np.array(x))
@@ -21,6 +23,7 @@ class CustomDataset(Dataset):
         self.dataset_keys = None
 
     def __getitem__(self, idx):
+        """over loads getitem function of parent to customize loading of data by selecting specific values from input"""
         if self.dataset is None:
             self.dataset = h5py.File(self.pathToFile, mode='r')
             self.dataset_keys = [str(k) for k in self.dataset[self.split].keys()]
@@ -57,6 +60,7 @@ class CustomDataset(Dataset):
         return sample
 
     def find_IncorrectImage(self, category):
+        """find fake images"""
         idx = np.random.randint(len(self.dataset_keys))
         example_name = self.dataset_keys[idx]
         example = self.dataset[self.split][example_name]
@@ -68,6 +72,7 @@ class CustomDataset(Dataset):
         return self.find_IncorrectImage(category)
 
     def find_IntermediateEmbedding(self):
+        """finds and capture intermediate embeddings"""
         idx = np.random.randint(len(self.dataset_keys))
         example_name = self.dataset_keys[idx]
         example = self.dataset[self.split][example_name]
@@ -75,6 +80,7 @@ class CustomDataset(Dataset):
 
 
     def validate_image(self, img):
+        """validation of the image"""
         img = np.array(img, dtype=float)
         if len(img.shape) < 3:
             rgb = np.empty((64, 64, 3), dtype=np.float32)
@@ -87,6 +93,7 @@ class CustomDataset(Dataset):
 
 
     def __len__(self):
+        """overload len function to extract out keys"""
         myfile = h5py.File(self.pathToFile, 'r')
         self.dataset_keys = [str(k) for k in myfile[self.split].keys()]
         length = len(myfile[self.split])

@@ -6,8 +6,9 @@ from torch.autograd import Variable
 
 #vs2626
 class SelfAttentive( nn.Module ):
-
+    """Self Attention Core Module"""
     def __init__( self, ntoken, ninp, nhid, nlayers, da, r, mlp_nhid, nclass, emb_matrix, cuda, penal_type ):
+        """ Initialize Main Architecture of the model """
         super( SelfAttentive , self).__init__()
 
         # Embedding Layer
@@ -38,6 +39,7 @@ class SelfAttentive( nn.Module ):
             self.cuda()
 
     def init_weights( self ):
+        """ Initialize weights for the model """
         initrange = 0.1
         self.S1.weight.data.uniform_( -initrange, initrange )
         self.S2.weight.data.uniform_( -initrange, initrange )
@@ -49,9 +51,11 @@ class SelfAttentive( nn.Module ):
         self.decoder.bias.data.fill_( 0 )
 
     def init_wordembedding( self, embedding_matrix ):
+        """ Initialize word embedding to the model """
         self.encoder.weight.data = embedding_matrix
 
     def forward(self, input, hidden, len_li ):
+        """one step of forward prop"""
         emb = self.encoder( input )
 
         rnn_input = torch.nn.utils.rnn.pack_padded_sequence( emb, list( len_li.data ), batch_first=True )
@@ -111,6 +115,7 @@ class SelfAttentive( nn.Module ):
         return decoded, hidden, penal, weights
 
     def init_hidden( self, bsz ):
+        """Initialize hidden states"""
         weight = next( self.parameters() ).data
 
         return ( Variable( weight.new( self.nlayers * 2 , bsz, self.nhid ).zero_() ),

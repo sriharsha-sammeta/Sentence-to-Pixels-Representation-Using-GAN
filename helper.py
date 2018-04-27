@@ -13,6 +13,7 @@ class Tools(object):
     """Used for certain tools that are re-used across"""
     @staticmethod
     def randomly_initialize_weights(m):
+        """ Randomly initializes weights. Used when starting model is not given  """ 
         classname = m.__class__.__name__
         if classname.find('Conv') != -1:
             m.weight.data.normal_(0.0, 0.02)
@@ -26,6 +27,7 @@ class Tools(object):
 
     @staticmethod    
     def GP_caliculate(netD, real_data, real_embed, Unrealdata, LAMBDA):
+        """ Caliculates gradient penalty """ 
         BATCH_SIZE = real_data.size(0)
         alpha = torch.rand(BATCH_SIZE, 1)
         alpha = alpha.expand(BATCH_SIZE, int(real_data.nelement() / BATCH_SIZE)).contiguous().view(BATCH_SIZE, 3, 64, 64)
@@ -49,6 +51,7 @@ class Tools(object):
 
     @staticmethod
     def save_checkpoint(netD, netG, dir_path, subdir_path, epoch):
+        """ Saves model checkpoints in the given location """ 
         path =  os.path.join(dir_path, subdir_path)
         if not os.path.exists(path):
             os.makedirs(path)
@@ -68,6 +71,7 @@ class VisdomPlotter(object):
         self.plots = {}
 
     def plot(self, var_name, split_name, x, y, xlabel='epoch'):
+        """ Plots graphs in visdom server. Usually generator/discrimantor loss values """ 
         if var_name not in self.plots:
             self.plots[var_name] = self.viz.line(X=np.array([x,x]), Y=np.array([y,y]), env=self.env, opts=dict(
                 legend=[split_name],
@@ -79,6 +83,7 @@ class VisdomPlotter(object):
             self.viz.updateTrace(X=np.array([x]), Y=np.array([y]), env=self.env, win=self.plots[var_name], name=split_name)
 
     def draw(self, var_name, images):
+        """ Draws images in visdom server  """ 
         if var_name not in self.plots:
             self.plots[var_name] = self.viz.images(images, env=self.env)
         else:

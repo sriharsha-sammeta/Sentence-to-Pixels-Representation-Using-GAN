@@ -13,11 +13,13 @@ import yaml
 
 #ys3055
 class Train_DCGAN(Train_GAN):
+    """ DCGAN training classs """ 
     def __init__(self, config):
         super().__init__(config)
             
 
     def train(self):
+        """ Train method for DCGAN """ 
         l1_penality, l2_penality, metric, = nn.L1Loss(), nn.MSELoss(), nn.BCELoss()
         iteration = 0
         cls = False

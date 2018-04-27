@@ -9,6 +9,7 @@ from Utility import *
 #vs2626
 
 def evaluate( data_source, labels, data_len ):
+    """Evaluation of the results"""
     total_loss = 0
     
     acc = []

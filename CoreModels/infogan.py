@@ -7,7 +7,9 @@ import pdb
 
 #vs2626
 class generator(nn.Module):
+	"""Generator Module"""
 	def __init__(self):
+		""" Initialize Main Architecture of the model """
 		super(generator, self).__init__()
 		self.image_size = 64
 		self.num_channels = 3
@@ -47,7 +49,7 @@ class generator(nn.Module):
 			)
 
 	def forward(self, embed_vector, z):
-
+		"""one step of forward prop"""
 		projected_embed = self.projection(embed_vector).unsqueeze(2).unsqueeze(3)
 		latent_vector = torch.cat([projected_embed, z], 1)
 		output = self.netG(latent_vector)
@@ -55,7 +57,9 @@ class generator(nn.Module):
 		return output
 
 class discriminator(nn.Module):
+	"""Discriminator module"""
 	def __init__(self, improved = False):
+		""" Initialize Main Architecture of the model """
 		super(discriminator, self).__init__()
 		self.image_size = 64
 		self.num_channels = 3
@@ -107,6 +111,7 @@ class discriminator(nn.Module):
 			)
 
 	def forward(self, inp, embed):
+		"""one step of forward prop"""
 		x_intermediate = self.netD_1(inp)
 		x = self.projector(x_intermediate, embed)
 		x = self.netD_2(x)

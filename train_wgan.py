@@ -13,11 +13,13 @@ import yaml
 
 #se2444
 class Train_WGAN(Train_GAN):
+    """ WGAN training classs """ 
     def __init__(self, config):
         super().__init__(config)
             
 
-    def train(self):        
+    def train(self):   
+        """ Train method for WGAN """      
         iteration = 0
         cls = False
         

@@ -3,8 +3,8 @@ from torch.autograd import Variable
 
 #vs2626
 
-# Batchify the whole dataset
 def select_data( data, bsz ):
+    """Batchify the whole dataset"""
     try:
         nbatch = data.size( 0 ) // bsz
         data = data.narrow( 0, 0, nbatch * bsz )
@@ -26,9 +26,9 @@ def repackage_hidden( h ):
     else:
         return tuple( repackage_hidden( v ) for v in h )
 
-# Retrieve a batch from the source
+
 def get_batch( source, labels, len_list, i, size, cuda, evaluation=False ):
-    
+    """Retrieve a batch from the source"""
     batch_size = size
     data = source[ i : i + batch_size ]
 
@@ -43,9 +43,8 @@ def get_batch( source, labels, len_list, i, size, cuda, evaluation=False ):
     
     return data, target, len_li
 
-
-# Function to compute precision, recall, f1 and accuracy
 def compute_measure( pred, target ):
+    """Function to compute precision, recall, f1 and accuracy"""
     pred = pred.view(-1)
     target = target.view(-1)
     
@@ -68,9 +67,8 @@ def compute_measure( pred, target ):
     return pre, rec, f1, acc
 
 
-# Get Attention Weights Function
 def Attentive_weights( model, data_source, labels, data_len, eval_batch_size, cuda ):
-    
+    """Get Attention Weights Function"""
     hidden = model.init_hidden( eval_batch_size )
     Weights = {}
     

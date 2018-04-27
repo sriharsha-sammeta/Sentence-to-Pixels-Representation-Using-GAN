@@ -1,9 +1,10 @@
 from CoreModels import dcgan, wgan, infogan
 #vs2626
 class repository(object):
-
+    """Repository which gives generators / discriminators based on gan_type"""
     @staticmethod
     def generator_factory(type):
+        """Repository which gives generators based on gan_type"""
         if type == 'dcgan':
             return dcgan.generator()
         elif type == 'wgan':
@@ -14,6 +15,7 @@ class repository(object):
 
     @staticmethod
     def discriminator_factory(type):
+        """Repository which gives discriminators based on gan_type"""
         if type == 'dcgan':
             return dcgan.discriminator()
         elif type == 'wgan':

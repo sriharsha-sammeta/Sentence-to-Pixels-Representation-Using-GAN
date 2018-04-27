@@ -55,7 +55,7 @@ If you want to quickly test the implementation:
 - Put it in root directory
 - run the command ``` python main.py```
 
-## Detailed intructions to test various datasets and models
+## Detailed instructions to test various datasets and models
 We are using 3 datasets to train our gan models. 
 
 To download the dataset, please follow this for <a href='https://drive.google.com/file/d/1EgnaTrlHGaqK5CCgHKLclZMT_AMSTyh8/view'>Flowers</a>, <a href='https://drive.google.com/file/d/1mNhn6MYpBb-JwE86GC1kk0VJsYj-Pn5j/view'>Birds</a>, <a href='https://drive.google.com/file/d/0B0ywwgffWnLLLUc2WHYzM0Q2eWc/view?usp=sharing'>COCO</a> and put it in the root directory. 

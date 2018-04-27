@@ -13,7 +13,9 @@ import yaml
 
 #vs2626
 class Train_GAN(object):
+    """Class to provide base class for other gan training"""
     def __init__(self, config):
+        """ Initialized configuration values that will be used by subclasses """ 
         # setting configuration values 
         self.dimension_noise = 100
         self.beta1 = 0.5
