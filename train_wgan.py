@@ -11,7 +11,7 @@ from PIL import Image
 from train_gan import Train_GAN
 import yaml
 
-
+#se2444
 class Train_WGAN(Train_GAN):
     def __init__(self, config):
         super().__init__(config)

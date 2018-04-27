@@ -4,7 +4,7 @@ from torch.autograd import Variable
 import numpy as np
 from CoreModels.coremodel import Concat_embed
 import pdb
-
+#se2444
 class generator(nn.Module):
 	def __init__(self):
 		super(generator, self).__init__()
