@@ -19,9 +19,7 @@ class Train_WGAN(Train_GAN):
             
 
     def train(self):   
-        """ Train method for WGAN """      
-        iteration = 0
-        cls = False
+        """ Train method for WGAN """             
         
         l1_penality = nn.L1Loss() 
         l2_penality = nn.MSELoss()
@@ -30,7 +28,6 @@ class Train_WGAN(Train_GAN):
         for epoch in range(self.num_epochs):
             # load batch of samples from data loader
             for sample in self.data_loader:
-                iteration += 1
 
                 #extract usesful things from sample
                 CorrectImages = Variable(sample['CorrectImages'].float()).cuda()
@@ -53,11 +50,6 @@ class Train_WGAN(Train_GAN):
                 real_loss = metric(outputs, smoothed_original_keys)
                 real_score = outputs
 
-                if cls:
-                    outputs, _ = self.discriminator(IncorrectImages, CorrectEmbedding)
-                    wrong_loss = metric(outputs, Unreallabels)
-                    wrong_score = outputs
-
                 #random noise addition to make the model generalize
                 noise = Variable(torch.randn(CorrectImages.size(0), 100)).cuda()
                 noise = noise.view(noise.size(0), 100, 1, 1)
@@ -67,9 +59,6 @@ class Train_WGAN(Train_GAN):
                 Unrealscore = outputs
 
                 d_loss = real_loss + Unrealloss
-
-                if cls:
-                    d_loss = d_loss + wrong_loss
 
                 # backprop
                 d_loss.backward()
@@ -95,9 +84,8 @@ class Train_WGAN(Train_GAN):
                 g_loss.backward()
                 self.optimG.step()
 
-                if iteration % 5 == 0:
-                    self.logger.logger_iter_gan(epoch,d_loss, g_loss, real_score, Unrealscore)
-                    self.logger.draw(CorrectImages, Unrealimages)
+                self.logger.logger_iter_gan(epoch,d_loss, g_loss, real_score, Unrealscore)
+                self.logger.draw(CorrectImages, Unrealimages)
 
             self.logger.plotter_epoch_w(epoch)
 

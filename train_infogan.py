@@ -20,12 +20,12 @@ class Train_INFOGAN(Train_GAN):
 
     def train(self):    
         """ Trains the model InfoGAN """ 
-        one = torch.FloatTensor([1])
-        mone = one * -1
+        curr_input = torch.FloatTensor([1])
+        modified_input = curr_input * -1
 
-        one = Variable(one).cuda()
-        mone = Variable(mone).cuda()
-        cls = False
+        curr_input = Variable(curr_input).cuda()
+        modified_input = Variable(modified_input).cuda()
+    
         gen_iteration = 0
         for epoch in range(self.num_epochs):
             iterator = 0
@@ -66,14 +66,8 @@ class Train_INFOGAN(Train_GAN):
                     #setting up discriminator 
                     outputs, _ = self.discriminator(CorrectImages, CorrectEmbedding)
                     real_loss = torch.mean(outputs)
-                    real_loss.backward(mone)
-
-                    #if cls algorithm is enabled, do the following
-                    if cls:
-                        outputs, _ = self.discriminator(IncorrectImages, CorrectEmbedding)
-                        wrong_loss = torch.mean(outputs)
-                        wrong_loss.backward(one)
-
+                    real_loss.backward(modified_input)
+                    
                     # adding random noise
                     noise = Variable(torch.randn(CorrectImages.size(0), self.dimension_noise), volatile=True).cuda()
                     noise = noise.view(noise.size(0), self.dimension_noise, 1, 1)
@@ -81,13 +75,10 @@ class Train_INFOGAN(Train_GAN):
                     Unrealimages = Variable(self.generator(CorrectEmbedding, noise).data)
                     outputs, _ = self.discriminator(Unrealimages, CorrectEmbedding)
                     infoloss = torch.mean(outputs)
-                    infoloss.backward(one)
+                    infoloss.backward(curr_input)
                     
                     # loss caliculation in discriminator: normal loss + mutual information loss
-                    d_loss = real_loss - infoloss
-
-                    if cls:
-                        d_loss = d_loss - wrong_loss
+                    d_loss = real_loss - infoloss                    
 
                     self.optimD.step()
 
@@ -106,7 +97,7 @@ class Train_INFOGAN(Train_GAN):
 
                 # loss caliculation in generator: normal loss + information loss 
                 g_loss = torch.mean(outputs)
-                g_loss.backward(mone)
+                g_loss.backward(modified_input)
                 g_loss = - g_loss
                 self.optimG.step()
 

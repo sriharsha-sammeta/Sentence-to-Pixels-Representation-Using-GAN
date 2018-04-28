@@ -29,8 +29,7 @@ class Train_GAN(object):
         self.batch_size = config['batch_size']
         self.num_workers = config['num_workers']
         self.lr = config['lr']
-        self.num_epochs = config['epochs']
-        self.cls = config['cls']        
+        self.num_epochs = config['epochs'] 
         self.generator = torch.nn.DataParallel(repository.generator_factory(self.gan_type).cuda())       
         self.discriminator = torch.nn.DataParallel(repository.discriminator_factory(self.gan_type).cuda())         
 

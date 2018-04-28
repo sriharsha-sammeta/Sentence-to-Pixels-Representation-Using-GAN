@@ -2,7 +2,6 @@
 dataset: 'flowers'
 gan_type: 'dcgan'
 lr: 0.0002
-cls: False
 save_directory_path: ''
 inference: False
 path_to_pre_trained_discriminator: ''

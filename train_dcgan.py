@@ -20,13 +20,10 @@ class Train_DCGAN(Train_GAN):
 
     def train(self):
         """ Train method for DCGAN """ 
-        l1_penality, l2_penality, metric, = nn.L1Loss(), nn.MSELoss(), nn.BCELoss()
-        iteration = 0
-        cls = False
+        l1_penality, l2_penality, metric, = nn.L1Loss(), nn.MSELoss(), nn.BCELoss()        
 
         for epoch in range(self.num_epochs):
-            for sample in self.data_loader:
-                iteration += 1
+            for sample in self.data_loader:                
 
                 CorrectImages, CorrectEmbedding, IncorrectImages = \
                 Variable(sample['CorrectImages'].float()).cuda(), \
@@ -48,12 +45,7 @@ class Train_DCGAN(Train_GAN):
                 outputs, val_act_original = self.discriminator(CorrectImages, CorrectEmbedding)
                 real_loss = metric(outputs, smoothed_original_keys)
                 real_score = outputs
-
-                if cls:
-                    outputs, _ = self.discriminator(IncorrectImages, CorrectEmbedding)
-                    wrong_loss = metric(outputs, Unreallabels)
-                    wrong_score = outputs
-
+                
                 noise = Variable(torch.randn(CorrectImages.size(0), 100)).cuda()
                 noise = noise.view(noise.size(0), 100, 1, 1)
                 Unrealimages = self.generator(CorrectEmbedding, noise)
@@ -62,9 +54,6 @@ class Train_DCGAN(Train_GAN):
                 Unrealscore = outputs
 
                 d_loss = real_loss + Unrealloss
-
-                if cls:
-                    d_loss = d_loss + wrong_loss
 
                 d_loss.backward()
                 self.optimD.step()
@@ -89,9 +78,8 @@ class Train_DCGAN(Train_GAN):
                 g_loss.backward()
                 self.optimG.step()
 
-                if iteration % 5 == 0:
-                    self.logger.logger_iter_gan(epoch,d_loss, g_loss, real_score, Unrealscore)
-                    self.logger.draw(CorrectImages, Unrealimages)
+                self.logger.logger_iter_gan(epoch,d_loss, g_loss, real_score, Unrealscore)
+                self.logger.draw(CorrectImages, Unrealimages)
 
             self.logger.plotter_epoch_w(epoch)
 
