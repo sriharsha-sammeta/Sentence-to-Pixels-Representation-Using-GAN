@@ -18,9 +18,9 @@ test = f.create_group('test')
 
 for _class in sorted(hd5_path):
     if _class in open(config['train_split_path']).read().splitlines():
-		split = train
+    	split = train
 	elif _class in open(config['val_split_path']).read().splitlines():
-    		split = valid
+    	split = valid
 	elif _class in open(config['test_split_path']).read().splitlines():
 		split = test
     
