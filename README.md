@@ -97,5 +97,6 @@ python main.py
 - http://www.vision.caltech.edu/visipedia/CUB-200.html
 - http://cocodataset.org/#home 
 - https://github.com/paarthneekhara/text-to-image 
-- https://github.com/zsdonghao/text-to-image 
+- https://github.com/zsdonghao/text-to-image <br>
+- https://github.com/handspeaker/gan_practice/blob/master/wgan.py
 
