@@ -1,72 +1,46 @@
-import os
-from os.path import join, isfile
 import numpy as np
 import h5py
-from glob import glob
-from torch.utils.serialization import load_lua  
-from PIL import Image 
-import yaml
-import io
-import pdb
+import cv2
 
-#ys3055
 with open('config.yaml', 'r') as f:
 	config = yaml.load(f)
+
 
 images_path = config['images_path']
 embedding_path = config['embedding_path']
 text_path = config['text_path']
 datasetDir = config['dataset_path']
 
-val_classes = open(config['val_split_path']).read().splitlines()
-train_classes = open(config['train_split_path']).read().splitlines()
-test_classes = open(config['test_split_path']).read().splitlines()
-
 f = h5py.File(datasetDir, 'w')
 train = f.create_group('train')
 valid = f.create_group('valid')
 test = f.create_group('test')
 
-for _class in sorted(os.listdir(embedding_path)):
-	split = ''
-	if _class in train_classes:
+for _class in sorted(hd5_path):
+    if _class in open(config['train_split_path']).read().splitlines():
 		split = train
-	elif _class in val_classes:
-		split = valid
-	elif _class in test_classes:
+	elif _class in open(config['val_split_path']).read().splitlines():
+    		split = valid
+	elif _class in open(config['test_split_path']).read().splitlines():
 		split = test
+    
+   
+# open a hdf5 file and create earrays
+hdf5_file = h5py.File(hdf5_path, mode='w')
+for example in (data_path + "/*.t7")):
+	img_path = example['img']
+	embeddings = example['embeddings'].numpy()
+	example_name = img_path.split('/')[-1][:-4]
 
-	data_path = os.path.join(embedding_path, _class)
-	txt_path = os.path.join(text_path, _class)
-	for example, txt_file in zip(sorted(glob(data_path + "/*.t7")), sorted(glob(txt_path + "/*.txt"))):
-		example_data = load_lua(example)
-		img_path = example_data['img']
-		embeddings = example_data['txt'].numpy()
-		example_name = img_path.split('/')[-1][:-4]
+	img = cv2.imread(img_path)
+	embeddings = embeddings[txt_choice]
+	txt = np.array(example['txt'])
+	txt = txt[txt_choice]
+	
 
-		f = open(txt_file, "r")
-		txt = f.readlines()
-		f.close()
-
-		img_path = os.path.join(images_path, img_path)
-		img = open(img_path, 'rb').read()
-
-		txt_choice = np.random.choice(range(10), 5)
-
-		embeddings = embeddings[txt_choice]
-		txt = np.array(txt)
-		txt = txt[txt_choice]
-		dt = h5py.special_dtype(vlen=str)
-
-		for c, e in enumerate(embeddings):
-			ex = split.create_group(example_name + '_' + str(c))
-			ex.create_dataset('name', data=example_name)
-			ex.create_dataset('img', data=np.void(img))
-			ex.create_dataset('embeddings', data=e)
-			ex.create_dataset('class', data=_class)
-			ex.create_dataset('txt', data=txt[c].astype(object), dtype=dt)
-
-		print(example_name)
-
-
-
+	hdf5_file.create_group(split)
+        hdf5_file.create_dataset("embeddings", embeddings)
+        hdf5_file.create_dataset("txt", txt)
+	hdf5_file.create_dataset("txt", txt)
+      
+hdf5_file.close()
