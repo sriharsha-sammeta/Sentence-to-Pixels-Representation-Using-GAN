@@ -41,6 +41,7 @@ Yuval Schaal - ys3055
 - CoreModels/dcgan.py
 - train_dcgan.py
 - scripts/script_hd5.py
+- created figure 1 and figure 3 in reports shown in img/fig1 and img/fig3
 
 
 ## Code Organization
